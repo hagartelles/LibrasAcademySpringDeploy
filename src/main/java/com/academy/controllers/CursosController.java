@@ -55,10 +55,10 @@ public class CursosController {
     }
     
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(Cursos curso, @PathVariable Long id) {
+    public ModelAndView editar(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("cursos/editCursos");
-        modelAndView.addObject("curso", cursosRepository.getReferenceById(id));
-        modelAndView.addObject("professor", professorRepository.findAll());
+        modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
+        modelAndView.addObject("professores", professorRepository.findAll());
 
 //        modelAndView.addObject("cursos", new Cursos());
 //        modelAndView.addObject("curso", cursosRepository.findAll());
@@ -78,7 +78,7 @@ public class CursosController {
     }
     
     @PostMapping("/{id}/editar")
-    public String editar(Cursos curso) {
+    public String editar(Cursos curso, @PathVariable Long id) {
         cursosRepository.save(curso);
 
         return "redirect:/cursos";
