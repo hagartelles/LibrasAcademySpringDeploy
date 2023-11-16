@@ -31,7 +31,7 @@
                   <td th:text="${curso.num_aulas}">40 H</td>
                   <td th:text="${curso.carga_horaria}">15</td>
                   <td th:text="${curso.descricao}">Texto</td>
-                  <td th:text="${curso.professor.nome}">Prof</td>
+                  <td th:text="${curso.professor.nome == null ? '-' : curso.professor.nome}">Prof</td>
                   
                   <td>
                     <div class="btn-group">
