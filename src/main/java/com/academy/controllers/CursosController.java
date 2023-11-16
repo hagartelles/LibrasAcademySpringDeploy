@@ -56,7 +56,7 @@ public class CursosController {
     
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("cursos/editCurso");
+        ModelAndView modelAndView = new ModelAndView("cursos/editCursos");
 
         modelAndView.addObject("cursos", new Cursos());
         modelAndView.addObject("alunos", alunoRepository.findAll());
@@ -66,7 +66,7 @@ public class CursosController {
         return modelAndView;
     }
     
-    @PostMapping({"/cadastrar", "/{id}/editar"})
+    @PostMapping("/cadastrar")
     public String cadastrar(Cursos curso) {
         cursosRepository.save(curso);
 
