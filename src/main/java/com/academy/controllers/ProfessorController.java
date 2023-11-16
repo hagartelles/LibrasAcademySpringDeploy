@@ -49,27 +49,26 @@ public class ProfessorController {
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("funcionario/formulario");
+        ModelAndView modelAndView = new ModelAndView("professor/editProf");
         modelAndView.addObject("professor", professorRepository.getReferenceById(id));
         modelAndView.addObject("cargos", cargoRepository.findAll());
 
         return modelAndView;
     }
     
-//    @PostMapping("/cadastrar")
-//    public String cadastrar(Professor professor) {
-//        String senhaEncriptada = SenhaUtils.encode(professor.getSenha());
-//
-//        funcionario.setSenha(senhaEncriptada);
-//        funcionarioRepository.save(professor);
-//
-//        return "redirect:/professores";
-//    }
+    @PostMapping("/cadastrar")
+    public String cadastrar(Professor professor) {
+        //String senhaEncriptada = SenhaUtils.encode(professor.getSenha());
+        //funcionario.setSenha(senhaEncriptada);
+        professorRepository.save(professor);
+
+        return "redirect:/professores";
+    }
 
     @PostMapping("/{id}/editar")
     public String editar(Professor professor, @PathVariable Long id) {
-        String senhaAtual = professorRepository.getReferenceById(id).getSenha();
-        professor.setSenha(senhaAtual);
+        //String senhaAtual = professorRepository.getReferenceById(id).getSenha();
+        //professor.setSenha(senhaAtual);
 
         professorRepository.save(professor);
 

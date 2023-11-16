@@ -2,7 +2,7 @@
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Cadastro de Funcionário</title>
+	<title>Editar Professor</title>
 </head>
 
 <body>
@@ -10,36 +10,36 @@
 		<div class="row py-5">
 			<div class="col-sm-12">
 				<div class="card">
-					<form method="POST" th:object="${funcionario}" th:action="@{/funcionarios/cadastrar}">
+					<form method="POST" th:object="${professor}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados Pessoais</legend>
 
-<!--								<input type="hidden" th:field="*{id}">-->
+								<input type="hidden" th:field="*{id}">
 
 								<div class="row my-2">
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="nome">Nome</label>
-											<input type="text" class="form-control" placeholder="Nome do funcionario"
-												th:field="*{nome}" required>
+											<input type="text" class="form-control" th:value="${nome}"
+												th:field="*{nome}" th:required>
 										</div>
 									</div>
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="cpf">CPF</label>
-											<input type="text" class="form-control" placeholder="999.999.999-99"
-												th:field="*{cpf}" id="inputCpf" onkeyup="formataCPF(event)"
-												minlength="14" maxlength="14" required>
+											<input type="text" class="form-control" th:value="${cpf}" th:field="*{cpf}"
+												id="inputCpfEdit" onkeyup="formataCPF(event)" minlength="14"
+												maxlength="14" th:readonly="true">
 										</div>
 									</div>
 								</div>
-									<p>Sexo: </p>
+								<p>Sexo: <span th:text="${sexo}"></span></p>
 								<div class="col-sm-12 d-flex ">
 									<div class="form-check px-3">
-										
+
 										<input class="form-check-input" type="radio" name="sexo" id="gridRadios1"
-											th:field="*{sexo}" value="masculino" th:checked>
+											th:field="*{sexo}" value="masculino">
 										<label class="form-check-label" for="gridRadios1">
 											Masculino
 										</label>
@@ -64,7 +64,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="telefone">Telefone</label>
-											<input type="text" class="form-control" placeholder="(11) 99999-9999"
+											<input type="text" class="form-control" th:value="${telefone}"
 												th:field="*{telefone}" id="inputTel" onkeyup="formataTEL(event)"
 												minlength="14" maxlength="15" required>
 										</div>
@@ -72,8 +72,8 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="email">E-mail</label>
-											<input type="email" class="form-control" placeholder="email@exemplo.com"
-												th:field="*{email}">
+											<input type="email" class="form-control" th:value="${email}"
+												th:field="*{email}" th:readonly="true">
 										</div>
 									</div>
 								</div>
@@ -82,19 +82,22 @@
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataNascimento">Data de Nascimento</label>
-											<input type="date" class="form-control" th:field="*{dataNascimento}">
+											<input type="date" class="form-control" th:field="*{dataNascimento}"
+												th:value="${dataNascimento}">
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataAdmissao">Data de Admissão</label>
-											<input type="date" class="form-control" th:field="*{dataAdmissao}">
+											<input type="date" class="form-control" th:field="*{dataAdmissao}"
+												th:value="${dataAdimissao}">
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataDemissao">Data de Demissão</label>
-											<input type="date" class="form-control" th:field="*{dataDemissao}">
+											<input type="date" class="form-control" th:field="*{dataDemissao}"
+												th:value="${dataDemissao}">
 										</div>
 									</div>
 								</div>
@@ -105,17 +108,17 @@
 											<label>Cargo</label>
 											<select th:field="*{cargo}" class="form-select" style="width: 100%;">
 												<option th:each="cargo : ${cargos}" th:text="${cargo.nome}"
-													th:value="${cargo.id}">Desenvolvedor(a) Front End</option>
+													th:value="${cargo.id}">Professor</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6 col-sm-12">
-					                  <div class="form-group">
-					                    <label for="salario">Salario</label>
-					                    <input type="text" class="form-control" id="salario" th:field="*{salario}" 
-					                    th:onKeyPress="return(moeda(this,'.',',',event))">
-					                  </div>
-					                </div>
+										<div class="form-group">
+											<label for="salario">Salario</label>
+											<input type="text" class="form-control" id="salario" th:field="*{salario}"
+												th:onKeyPress="return(moeda(this,'.',',',event))" th:value="${salario}">
+										</div>
+									</div>
 								</div>
 							</fieldset>
 
@@ -123,7 +126,8 @@
 								<div class="col-sm-12">
 									<div class="form-group ">
 										<label for="senha">Senha</label>
-										<input type="password" class="form-control" th:field="*{senha}" id="inputSenha">
+										<input type="password" class="form-control" th:field="*{senha}" id="inputSenha"
+											th:value="${senha}">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -151,7 +155,12 @@
 			</div>
 		</div>
 	</main>
+	<th:block th:fragment="scripts">
+		<script>
+			$('#salario').mask('#.##0,00', {reverse: true});
 
+		</script>
+	</th:block>
 </body>
 
 </html>

@@ -106,7 +106,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label>Cargo</label>
-											<select th:field="*{cargo}" class="form-control" style="width: 100%;">
+											<select th:field="*{cargo}" class="form-select" style="width: 100%;">
 												<option th:each="cargo : ${cargos}" th:text="${cargo.nome}"
 													th:value="${cargo.id}">Desenvolvedor(a) Front End</option>
 											</select>
@@ -116,7 +116,7 @@
 										<div class="form-group">
 											<label for="salario">Salario</label>
 											<input type="text" class="form-control" id="salario" th:field="*{salario}"
-												th:value="${salario}">
+												th:onKeyPress="return(moeda(this,'.',',',event))" th:value="${salario}">
 										</div>
 									</div>
 								</div>

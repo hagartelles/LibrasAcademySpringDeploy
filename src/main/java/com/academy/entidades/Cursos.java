@@ -30,7 +30,7 @@ public class Cursos extends Entidade {
 	@Column(name = "ano_lancamento", nullable = false)
 	private String anoLancamento;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "professor_id_fk")
     private Professor professor;
 	

@@ -11,9 +11,8 @@
       <div class="col-sm-12">
         <div class="card">
          
-          <form method="POST" th:object="${cursos}">			  
-            <div class="card-body">
-              <input type="hidden" th:field="*{id}">
+          <form method="POST" th:object="${cursos}" th:action="@{/cursos/cadastrar}">			  
+            <div class="card-body">           
 
               <div class="row">
                 <div class="col-sm-12">
@@ -25,16 +24,16 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row my-2">
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="descricao">Descrição</label>
-                    <textarea class="form-control" rows="4" th:field="*{descricao}"></textarea>
+                    <textarea class="form-control" rows="2" th:field="*{descricao}" placeholder="Descrição do curso..." ></textarea>
                   </div>
                 </div>
               </div>
               
-              <div class="row">
+              <div class="row my-2">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
                     <label for="carga_horaria">Carga horária</label>
@@ -44,7 +43,25 @@
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
                     <label for="num_aulas">Quantidade de aulas</label>
-                    <input type="number" class="form-control" th:field="*{num_aulas}">
+                    <input type="number" class="form-control" th:field="*{num_aulas}" placeholder="ex: 22">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row my-2">
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="anoLancamento">Ano de Lançamento</label>
+                    <input type="number"  class="form-control" th:field="*{anoLancamento}" placeholder="ex: 2023">
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="prof">Professor</label>
+                    <select th:field="*{professor}" class="form-select" style="width: 100%;">						
+						<option th:each="professor : ${professores}" th:text="${professor.nome}" 
+						th:value="${professor.id}">Professor</option>											
+					</select>
                   </div>
                 </div>
               </div>
@@ -58,12 +75,6 @@
       </div>
     </div>
   </main>
-
-  <th:block th:fragment="scripts">
-    <script>
-      $('#salario').mask('#.##0,00', {reverse: true});
-    </script>
-  </th:block>
 </body>
 
 </html>

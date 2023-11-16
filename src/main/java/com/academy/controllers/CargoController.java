@@ -36,7 +36,7 @@ public class CargoController {
 	
 	@GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("cargo/formulario");
+        ModelAndView modelAndView = new ModelAndView("cargo/editCargo");
         modelAndView.addObject("cargo", cargoRepository.getReferenceById(id));
 
         return modelAndView;

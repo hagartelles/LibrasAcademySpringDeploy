@@ -44,25 +44,25 @@ public class AlunoController {
 	
 	@GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("aluno/formulario");
+        ModelAndView modelAndView = new ModelAndView("aluno/editAluno");
         modelAndView.addObject("aluno", alunoRepository.getReferenceById(id));
 
         return modelAndView;
     }
     
-//    @PostMapping("/cadastrar")
-//    public String cadastrar(Aluno aluno) {
-//        String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());//
-//        aluno.setSenha(senhaEncriptada);
-//        alunoRepository.save(aluno);
-//
-//        return "redirect:/alunos";
-//    }
+    @PostMapping("/cadastrar")
+    public String cadastrar(Aluno aluno) {
+        //String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());//
+        //aluno.setSenha(senhaEncriptada);
+        alunoRepository.save(aluno);
+
+        return "redirect:/alunos";
+    }
 	
 	@PostMapping("/{id}/editar")
     public String editar(Aluno aluno, @PathVariable Long id) {
-        String senhaAtual = alunoRepository.getReferenceById(id).getSenha();
-        aluno.setSenha(senhaAtual);
+        //String senhaAtual = alunoRepository.getReferenceById(id).getSenha();
+        //aluno.setSenha(senhaAtual);
         alunoRepository.save(aluno);
 
         return "redirect:/alunos";

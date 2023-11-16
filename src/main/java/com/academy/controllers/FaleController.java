@@ -26,14 +26,6 @@ public class FaleController {
         return modelAndView;
 	}
 	
-	@GetMapping("/{id}")
-    public ModelAndView detalhes(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("fale/detalhes");
-        modelAndView.addObject("msg", faleRepository.getReferenceById(id));
-
-        return modelAndView;
-    }
-	
 	@GetMapping("/cadastrar")
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("fale/formulario");
@@ -44,11 +36,18 @@ public class FaleController {
 	
 	@GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("fale/formulario");
+        ModelAndView modelAndView = new ModelAndView("fale/editFale");
         modelAndView.addObject("msg", faleRepository.getReferenceById(id));
 
         return modelAndView;
     }
+	
+	@PostMapping("/cadastrar")
+	public String cadastrar(FaleConosco fale) {
+		faleRepository.save(fale);
+		
+		return "redirect:/faleMsg";
+	}
     	
 	@PostMapping("/{id}/editar")
     public String editar(FaleConosco fale, @PathVariable Long id) {

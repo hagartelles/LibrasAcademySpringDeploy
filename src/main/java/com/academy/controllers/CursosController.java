@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.academy.entidades.Cursos;
 import com.academy.repository.AlunoRepository;
 import com.academy.repository.CursosRepository;
-
-import com.academy.entidades.Cursos;
+import com.academy.repository.ProfessorRepository;
 
 @Controller
 @RequestMapping("/cursos")
@@ -22,6 +22,9 @@ public class CursosController {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	
+	@Autowired
+	private ProfessorRepository professorRepository;
 	
 	@GetMapping
     public ModelAndView home() {
@@ -43,7 +46,8 @@ public class CursosController {
     public ModelAndView cadastrar() {
         ModelAndView modelAndView = new ModelAndView("cursos/formulario");
         modelAndView.addObject("cursos", new Cursos());
-        modelAndView.addObject("estudantes", alunoRepository.findAll());
+        modelAndView.addObject("professores", professorRepository.findAll());
+//        modelAndView.addObject("estudantes", cursosRepository.findAll());
 //        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente"));
 //        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente"));
 
@@ -52,7 +56,7 @@ public class CursosController {
     
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("cursos/formulario");
+        ModelAndView modelAndView = new ModelAndView("cursos/editCurso");
 
         modelAndView.addObject("cursos", new Cursos());
         modelAndView.addObject("alunos", alunoRepository.findAll());
@@ -61,9 +65,16 @@ public class CursosController {
 
         return modelAndView;
     }
-
+    
     @PostMapping({"/cadastrar", "/{id}/editar"})
-    public String salvar(Cursos curso) {
+    public String cadastrar(Cursos curso) {
+        cursosRepository.save(curso);
+
+        return "redirect:/cursos";
+    }
+    
+    @PostMapping("/{id}/editar")
+    public String editar(Cursos curso) {
         cursosRepository.save(curso);
 
         return "redirect:/cursos";
