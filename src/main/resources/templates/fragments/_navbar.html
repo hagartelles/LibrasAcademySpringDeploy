@@ -1,0 +1,29 @@
+<!-- Navbar -->
+<nav th:fragment="nav" class="sb-topnav navbar navbar-expand navbar-dark fixed-top">
+	<!-- Navbar Brand-->
+	<div class="toggle icon-nav fixed-top" onclick="toggleMenu();"><i class="bi bi-list text-center text-white "></i></div>
+	<a class="navbar-brand margem-conteudo px-5" href="index.html">Libras Academy </a>
+	<!-- Navbar logado-->
+<!--	<div class="info">-->
+<!--				<a th:href="@{/perfil}" class="d-block" sec:authentication="name"></a>-->
+<!--			</div>-->
+	<!-- Navbar-->
+	<!-- Sidebar Toggle-->
+	<div class="text-right d-flex justify-content-end w-100 align-items-center">
+	<button class="btn btn-lg" id="sidebarToggle" href="#!"><i
+			class="bi bi-person-circle text-white" style="font-size: 40px;"></i></button>
+	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#!"><i class="bi bi-gear-fill px-2"></i> Configurações</a></li>
+				<li>
+					<hr class="dropdown-divider" />
+				</li>
+				<li><a class="dropdown-item" href="#!"><i class="bi bi-box-arrow-left px-2"></i> Sair</a></li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+</nav>

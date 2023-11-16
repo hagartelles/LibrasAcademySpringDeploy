@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title> Curso</title>
+</head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+         
+          <form method="POST" th:object="${cursos}">			  
+            <div class="card-body">
+              <input type="hidden" th:field="*{id}">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" placeholder="Java" th:field="*{nomeCurso}">
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea class="form-control" rows="4" th:field="*{descricao}"></textarea>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="carga_horaria">Carga horária</label>
+                    <input type="number" class="form-control" th:field="*{carga_horaria}">
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="num_aulas">Quantidade de aulas</label>
+                    <input type="number" class="form-control" th:field="*{num_aulas}">
+                  </div>
+                </div>
+              </div>
+
+
+            <div class="py-2">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <th:block th:fragment="scripts">
+    <script>
+      $('#salario').mask('#.##0,00', {reverse: true});
+    </script>
+  </th:block>
+</body>
+
+</html>
