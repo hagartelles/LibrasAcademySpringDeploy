@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.academy.entidades.Funcionario;
 import com.academy.repository.CargoRepository;
 import com.academy.repository.FuncionarioRepository;
-import com.academy.utils.SenhaUtils;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -54,7 +53,7 @@ public class FuncionarioController {
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("funcionario/formulario");
+        ModelAndView modelAndView = new ModelAndView("funcionario/editarFunc");
 
         modelAndView.addObject("funcionario", funcionarioRepository.getReferenceById(id));
         modelAndView.addObject("cargos", cargoRepository.findAll());
@@ -76,9 +75,10 @@ public class FuncionarioController {
     public String editar(Funcionario funcionario, @PathVariable Long id) {
         //String senhaAtual = funcionarioRepository.getReferenceById(id).getSenha();
         //funcionario.setSenha(senhaAtual);
-
+    	
+    	
         funcionarioRepository.save(funcionario);
-
+        
         return "redirect:/funcionarios";
     }
 

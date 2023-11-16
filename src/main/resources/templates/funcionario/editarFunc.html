@@ -10,7 +10,7 @@
 		<div class="row py-5">
 			<div class="col-sm-12">
 				<div class="card">
-					<form method="POST" th:object="${funcionario}" th:action="@{/funcionarios/editar}">
+					<form method="POST" th:object="${funcionario}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados Pessoais</legend>
@@ -28,18 +28,18 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="cpf">CPF</label>
-											<input type="text" class="form-control" th:value="${cpf}"
-												th:field="*{cpf}" id="inputCpfEdit" onkeyup="formataCPF(event)"
-												minlength="14" maxlength="14" th:readonly="true">
+											<input type="text" class="form-control" th:value="${cpf}" th:field="*{cpf}"
+												id="inputCpfEdit" onkeyup="formataCPF(event)" minlength="14"
+												maxlength="14" th:readonly="true">
 										</div>
 									</div>
 								</div>
-									<p>Sexo: <span th:text="${sexo}"></span></p>
+								<p>Sexo: <span th:text="${sexo}"></span></p>
 								<div class="col-sm-12 d-flex ">
 									<div class="form-check px-3">
-										
+
 										<input class="form-check-input" type="radio" name="sexo" id="gridRadios1"
-											th:field="*{sexo}" value="masculino" >
+											th:field="*{sexo}" value="masculino">
 										<label class="form-check-label" for="gridRadios1">
 											Masculino
 										</label>
@@ -82,19 +82,22 @@
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataNascimento">Data de Nascimento</label>
-											<input type="date" class="form-control" th:field="*{dataNascimento}" th:value="${dataNascimento}">
+											<input type="date" class="form-control" th:field="*{dataNascimento}"
+												th:value="${dataNascimento}">
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataAdmissao">Data de Admissão</label>
-											<input type="date" class="form-control" th:field="*{dataAdmissao}" th:value="${dataAdimissao}">
+											<input type="date" class="form-control" th:field="*{dataAdmissao}"
+												th:value="${dataAdimissao}">
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label for="dataDemissao">Data de Demissão</label>
-											<input type="date" class="form-control" th:field="*{dataDemissao}" th:value="${dataDemissao}">
+											<input type="date" class="form-control" th:field="*{dataDemissao}"
+												th:value="${dataDemissao}">
 										</div>
 									</div>
 								</div>
@@ -105,16 +108,17 @@
 											<label>Cargo</label>
 											<select th:field="*{cargo}" class="form-control" style="width: 100%;">
 												<option th:each="cargo : ${cargos}" th:text="${cargo.nome}"
-													th:value="${cargo}">Desenvolvedor(a) Front End</option>
+													th:value="${cargo.id}">Desenvolvedor(a) Front End</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6 col-sm-12">
-					                  <div class="form-group">
-					                    <label for="salario">Salario</label>
-					                    <input type="number" class="form-control" id="salario" th:field="*{salario}" th:value="${salario}" >
-					                  </div>
-					                </div>
+										<div class="form-group">
+											<label for="salario">Salario</label>
+											<input type="text" class="form-control" id="salario" th:field="*{salario}"
+												th:value="${salario}">
+										</div>
+									</div>
 								</div>
 							</fieldset>
 
@@ -122,7 +126,8 @@
 								<div class="col-sm-12">
 									<div class="form-group ">
 										<label for="senha">Senha</label>
-										<input type="password" class="form-control" th:field="*{senha}" id="inputSenha" th:value="${senha}">
+										<input type="password" class="form-control" th:field="*{senha}" id="inputSenha"
+											th:value="${senha}">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -150,6 +155,12 @@
 			</div>
 		</div>
 	</main>
+	<th:block th:fragment="scripts">
+		<script>
+			$('#salario').mask('#.##0,00', {reverse: true});
+
+		</script>
+	</th:block>
 </body>
 
 </html>
