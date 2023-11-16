@@ -29,12 +29,12 @@
                   <td th:text="${fale.mensagem}">Texto</td>                  
                   <td>
                     <div class="btn-group">                      
-                      <a  type="button" class="btn btn-warning" th:href="@{/fale/{id}/editar (id=${fale.id})}">
+                      <a  type="button" class="btn btn-warning" th:href="@{/faleMsg/{id}/editar (id=${fale.id})}">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                       <a 
                         type="button" class="btn btn-danger" 
-                        th:href="@{/fale/{id}/excluir (id=${fale.id})}" 
+                        th:href="@{/faleMsg/{id}/excluir (id=${fale.id})}" 
                         onclick="return confirm('Tem certeza que deseja excluir a mensagem?');"
                       >
                         <i class="bi bi-trash"></i>
