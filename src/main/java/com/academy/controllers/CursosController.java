@@ -55,11 +55,15 @@ public class CursosController {
     }
     
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable Long id) {
+    public ModelAndView editar(Cursos curso, @PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("cursos/editCursos");
+        modelAndView.addObject("curso", cursosRepository.getReferenceById(id));
+        modelAndView.addObject("professor", professorRepository.findAll());
 
-        modelAndView.addObject("cursos", new Cursos());
-        modelAndView.addObject("alunos", alunoRepository.findAll());
+//        modelAndView.addObject("cursos", new Cursos());
+//        modelAndView.addObject("curso", cursosRepository.findAll());
+//        modelAndView.addObject("professor", professorRepository.findAll());
+// tras tudo de aluno        modelAndView.addObject("alunos", alunoRepository.findAll());
 //        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente"));
 //        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente"));
 
