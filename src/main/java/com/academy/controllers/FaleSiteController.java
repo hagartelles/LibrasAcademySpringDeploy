@@ -16,8 +16,6 @@ public class FaleSiteController {
 	
 	@PostMapping("/cadastroMsg")
     public String cadastrar(FaleConosco fale) {
-        //String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());//
-        //aluno.setSenha(senhaEncriptada);
         faleRepository.save(fale);
 
         return "redirect:/";
