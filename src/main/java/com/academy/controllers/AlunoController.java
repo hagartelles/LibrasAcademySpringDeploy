@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.academy.entidades.Aluno;
 import com.academy.repository.AlunoRepository;
+import com.academy.repository.CursosRepository;
 
 @Controller
 @RequestMapping("/alunos")
@@ -18,9 +19,13 @@ public class AlunoController {
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
+	@Autowired
+	private CursosRepository cursosRepository;
+	
 	@GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("aluno/home");
+        modelAndView.addObject("estudantes", cursosRepository.findAll());
         modelAndView.addObject("alunos", alunoRepository.findAll());
         
         return modelAndView;
@@ -29,6 +34,7 @@ public class AlunoController {
 	@GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("aluno/detalhes");
+        modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
         modelAndView.addObject("aluno", alunoRepository.getReferenceById(id));
 
         return modelAndView;
@@ -52,8 +58,6 @@ public class AlunoController {
     
     @PostMapping("/cadastrar")
     public String cadastrar(Aluno aluno) {
-        //String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());//
-        //aluno.setSenha(senhaEncriptada);
         alunoRepository.save(aluno);
 
         return "redirect:/alunos";
@@ -61,8 +65,6 @@ public class AlunoController {
 	
 	@PostMapping("/{id}/editar")
     public String editar(Aluno aluno, @PathVariable Long id) {
-        //String senhaAtual = alunoRepository.getReferenceById(id).getSenha();
-        //aluno.setSenha(senhaAtual);
         alunoRepository.save(aluno);
 
         return "redirect:/alunos";

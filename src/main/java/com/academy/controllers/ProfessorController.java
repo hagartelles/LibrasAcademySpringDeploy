@@ -58,8 +58,6 @@ public class ProfessorController {
     
     @PostMapping("/cadastrar")
     public String cadastrar(Professor professor) {
-        //String senhaEncriptada = SenhaUtils.encode(professor.getSenha());
-        //funcionario.setSenha(senhaEncriptada);
         professorRepository.save(professor);
 
         return "redirect:/professores";
@@ -67,9 +65,6 @@ public class ProfessorController {
 
     @PostMapping("/{id}/editar")
     public String editar(Professor professor, @PathVariable Long id) {
-        //String senhaAtual = professorRepository.getReferenceById(id).getSenha();
-        //professor.setSenha(senhaAtual);
-
         professorRepository.save(professor);
 
         return "redirect:/professores";

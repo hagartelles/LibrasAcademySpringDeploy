@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Lista de Alunos</title>
+  <title>Cursos em andamento</title>
 </head>
 <body>
   <main>
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-			<div class="p-2">
-          <!-- /card-header -->
+       
           <div class="card-body table-responsive p-0">
             <table class="table table-hover table-striped text-nowrap">
-              <thead class="table-dark w-100">
+              <thead class="table-dark">
                 <tr class="text-center">
                   <th>ID</th>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>CPF</th>
-                  <th>Telefone</th>
-                  <th>Sexo</th>                  
+                  <th>Nome do Aluno</th>
+                  <th>Curso inscrito</th>
+                  <th>Educador</th>                  
                   <th colspan="2">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="aluno : ${alunos}">
-                  <td th:text="${aluno.id}">01</td>
-                  <td th:text="${aluno.nome}">Nome completo</td>
-                  <td th:text="${aluno.email}">email@email.com</td>
-                  <td th:text="${aluno.cpf}">000.000.000-00</td>
-                  <td th:text="${aluno.telefone}">(84) 99999-9999</td>
-                  <td th:text="${aluno.sexo}">Masculino, Feminino, Outro</td>
+                <tr th:each="curso : ${estudantes}">
+                  <td th:text="${curso.id}">1</td>
+                  <td th:text="${curso.alunos.nome}">Nome estudante</td>
+                  <td th:text="${curso.cursos.nomeCurso}">Nome Curso</td>
+                  <td th:text="${curso.professores.nome}">Nome Professor</td>
+                  
                   <td>
                     <div class="btn-group">
-                      <a type="button" class="btn btn-primary" th:href="@{/alunos/{id} (id=${aluno.id})}">
+                      <a type="button" class="btn btn-primary" th:href="@{/cursoAndamento/{id} (id=${curso.id})}">
                         <i class="bi bi-eye"></i>
                       </a>
-                      <a  type="button" class="btn btn-warning" th:href="@{/alunos/{id}/editar (id=${aluno.id})}">
+                      <a  type="button" class="btn btn-warning" th:href="@{/cursoAndamento/{id}/editar (id=${curso.id})}">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                       <a 
                         type="button" class="btn btn-danger" 
-                        th:href="@{/alunos/{id}/excluir (id=${aluno.id})}" 
-                        onclick="return confirm('Tem certeza que deseja excluir o funcionario?');"
+                        th:href="@{/cursoAndamento/{id}/excluir (id=${curso.id})}" 
+                        onclick="return confirm('Tem certeza que deseja excluir o professor?');"
                       >
                         <i class="bi bi-trash"></i>
                       </a>
@@ -57,5 +53,6 @@
     </div>
   </main>
 
+  
 </body>
 </html>

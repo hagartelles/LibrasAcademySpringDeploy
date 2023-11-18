@@ -24,6 +24,9 @@ function giro5() {
 function giro6() {
 	document.getElementById("seta6").classList.toggle('giro');
 }
+function giro7() {
+	document.getElementById("seta7").classList.toggle('giro');
+}
 
 /* Cadastro */
 function mostrarSenha() {

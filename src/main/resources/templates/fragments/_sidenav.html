@@ -101,7 +101,7 @@
         </li>
         <li>
           <a href="#">
-            <span class="icon"><i class="bi bi-journal-code"></i></span>
+            <span class="icon"><i class="bi bi-book"></i></span>
             <span class="title d-inline-flex">Cursos
             </span>
             <span id="seta5" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
@@ -123,13 +123,35 @@
         </li>
         <li>
           <a href="#">
-            <span class="icon"><i class="bi bi-person-vcard"></i></span>
-            <span class="title d-inline-flex">Mensagens
+            <span class="icon"><i class="bi bi-book-half"></i></span>
+            <span class="title d-inline-flex">Cursos feitos
             </span>
             <span id="seta6" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
               <i onclick="giro6()" class="bi bi-chevron-right text-white "></i>
             </span>
             <p id="collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <a th:href="@{/cursoAndamento}">
+                <span class="icon item"><i class="bi bi-list-ul"></i></span>
+                <span class="title">Listar
+                </span>
+              </a>
+              <a th:href="@{/cursoAndamento/cadastrar}">
+                <span class="icon item"><i class="bi bi-pencil-square"></i></span>
+                <span class="title">Cadastrar
+                </span>
+              </a>
+            </p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="bi bi-person-vcard"></i></span>
+            <span class="title d-inline-flex">Mensagens
+            </span>
+            <span id="seta7" class="icon d-inline-flex title seta" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+              <i onclick="giro7()" class="bi bi-chevron-right text-white "></i>
+            </span>
+            <p id="collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <a th:href="@{/faleMsg}">
                 <span class="icon item"><i class="bi bi-list-ul"></i></span>
                 <span class="title">Listar

@@ -4,7 +4,6 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -15,7 +14,7 @@ public class Aluno extends Pessoa {
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
-	@ManyToMany(mappedBy = "estudantes", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "estudantes")
     private List<Cursos> cursos;
 
 	public List<Cursos> getCursos() {

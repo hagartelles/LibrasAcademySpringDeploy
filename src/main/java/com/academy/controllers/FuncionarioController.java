@@ -63,20 +63,13 @@ public class FuncionarioController {
     
     @PostMapping("/cadastrar")
     public String cadastrar(Funcionario funcionario) {
-        //String senhaEncriptada = SenhaUtils.encode(funcionario.getSenha());
-
-       // funcionario.setSenha(senhaEncriptada);
         funcionarioRepository.save(funcionario);
 
         return "redirect:/funcionarios";
     }
 
     @PostMapping("/{id}/editar")
-    public String editar(Funcionario funcionario, @PathVariable Long id) {
-        //String senhaAtual = funcionarioRepository.getReferenceById(id).getSenha();
-        //funcionario.setSenha(senhaAtual);
-    	
-    	
+    public String editar(Funcionario funcionario, @PathVariable Long id) {    	
         funcionarioRepository.save(funcionario);
         
         return "redirect:/funcionarios";
