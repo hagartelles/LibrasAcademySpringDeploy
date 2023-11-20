@@ -1,14 +1,17 @@
 package com.academy.entidades;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.List;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,7 +43,7 @@ public class Cursos extends Entidade {
         joinColumns = @JoinColumn(name = "curso_id_fk"),
         inverseJoinColumns = @JoinColumn(name = "aluno_id_fk")
         )
-	private List<Aluno> estudantes;
+	private Set<Aluno> estudantes = new HashSet<>();
 
 	public String getNomeCurso() {
 		return nomeCurso;
@@ -90,11 +93,11 @@ public class Cursos extends Entidade {
 		this.professor = professor;
 	}
 
-	public List<Aluno> getEstudantes() {
+	public Set<Aluno> getEstudantes() {
 		return estudantes;
 	}
 
-	public void setEstudantes(List<Aluno> estudantes) {
+	public void setEstudantes(Set<Aluno> estudantes) {
 		this.estudantes = estudantes;
 	}
 

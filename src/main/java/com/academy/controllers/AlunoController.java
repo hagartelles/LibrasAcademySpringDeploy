@@ -25,6 +25,7 @@ public class AlunoController {
 	@GetMapping
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("aluno/home");
+        
         modelAndView.addObject("estudantes", cursosRepository.findAll());
         modelAndView.addObject("alunos", alunoRepository.findAll());
         
@@ -63,9 +64,17 @@ public class AlunoController {
         return "redirect:/alunos";
     }
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@PostMapping("/{id}/editar")
-    public String editar(Aluno aluno, @PathVariable Long id) {
+    public String editar(Aluno aluno, @PathVariable Long id) throws Exception {
         alunoRepository.save(aluno);
+        if (alunoRepository.equals(aluno.getCpf())) {
+            throw new Exception("Cpf já existe");
+        }
+
+        if (alunoRepository.equals(aluno.getEmail())) {
+            throw new Exception("Email já existe");
+        }
 
         return "redirect:/alunos";
     }

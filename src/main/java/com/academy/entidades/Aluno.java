@@ -1,6 +1,8 @@
 package com.academy.entidades;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,13 +17,13 @@ public class Aluno extends Pessoa {
 	private String senha;
 
 	@ManyToMany(mappedBy = "estudantes")
-    private List<Cursos> cursos;
+    private Set<Cursos> cursos = new HashSet<>();
 
-	public List<Cursos> getCursos() {
+	public Set<Cursos> getCursos() {
 		return cursos;
 	}
 
-	public void setCursos(List<Cursos> cursos) {
+	public void setCursos(Set<Cursos> cursos) {
 		this.cursos = cursos;
 	}
 

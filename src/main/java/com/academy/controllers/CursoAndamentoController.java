@@ -1,6 +1,8 @@
 package com.academy.controllers;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,18 +33,40 @@ public class CursoAndamentoController {
 	
 	@GetMapping
     public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView("cursoAndamento/formulario");
+
+        List<Aluno> alunos = alunoRepository.findAll();
+        List<Cursos> cursos = cursosRepository.findAll();
+        modelAndView.addObject("cursos", cursos);
+        modelAndView.addObject("alunos", alunos);
+
+        return modelAndView;
+    }
+	
+	@GetMapping("/listar-relacoes")
+    public ModelAndView listarRelacoes() {
         ModelAndView modelAndView = new ModelAndView("cursoAndamento/home");
-        modelAndView.addObject("alunos", alunoRepository.findAll());
-        modelAndView.addObject("cursos", cursosRepository.findAll());
+
+        List<Aluno> alunos = alunoRepository.findAll();
+        List<Cursos> cursos = cursosRepository.findAll();
+
+        // Obtém a lista de alunos de cada curso
+        List<Set<Aluno>> alunosPorCurso = cursos.stream().map(curso -> curso.getEstudantes()).collect(Collectors.toList());
+
+        modelAndView.addObject("alunos", alunos);
+        modelAndView.addObject("cursos", cursos);
+        modelAndView.addObject("alunosPorCurso", alunosPorCurso);
 
         return modelAndView;
     }
 
     @GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("cursoAndamento/detalhes");
-        modelAndView.addObject("curso", cursosRepository.getReferenceById(id));        
-        modelAndView.addObject("alunos", alunoRepository.getReferenceById(id));
+    	ModelAndView modelAndView = new ModelAndView("cursoAndamento/detalhes");
+
+        Cursos curso = cursosRepository.findById(id).orElseThrow();
+        modelAndView.addObject("curso", curso);
+
         return modelAndView;
     }
     
@@ -69,15 +93,19 @@ public class CursoAndamentoController {
     }
     
     @PostMapping("/cadastrar")
-    public String cadastrar(@RequestParam("alunoId") Long alunoId, @RequestParam("cursoId") Long cursoId) {
-//        cursosRepository.save(curso);
-    	Aluno aluno = alunoRepository.findById(alunoId).orElseThrow(); // Supondo que você tenha um método findById no repositório
-        Cursos curso = cursosRepository.findById(cursoId).orElseThrow(); // Supondo que você tenha um método findById no repositório
-
+    public ModelAndView cadastrar(@RequestParam("alunoId") Long alunoId, @RequestParam("cursoId") Long cursoId) {
+    	ModelAndView modelAndView = new ModelAndView("cursoAndamento/formulario");
+    	Aluno aluno = alunoRepository.findById(alunoId).orElseThrow();
+        Cursos curso = cursosRepository.findById(cursoId).orElseThrow();
         curso.getEstudantes().add(aluno);
         alunoRepository.save(aluno);
+        
+        List<Aluno> alunos = alunoRepository.findAll();
+        List<Cursos> cursos = cursosRepository.findAll();
+        modelAndView.addObject("cursos", cursos);
+        modelAndView.addObject("alunos", alunos);
 
-        return "redirect:/cursoAndamento";
+        return modelAndView;
     }
     
     @PostMapping("/{id}/editar")

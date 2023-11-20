@@ -19,10 +19,13 @@ public class CadastroSiteController {
 	
 	@PostMapping("/cadastrar")
     public String cadastrar(Aluno aluno) {
-        //String senhaEncriptada = SenhaUtils.encode(aluno.getSenha());//
-        //aluno.setSenha(senhaEncriptada);
         alunoRepository.save(aluno);
 
         return "redirect:/";
     }
+	
+	@PostMapping("/loginFalso")
+	public String loginFalso() {
+		return "redirect:/cursos";
+	}
 }

@@ -10,6 +10,28 @@
 		<div class="row py-5">
 			<div class="col-sm-12">
 				<div class="card">
+					<h1>Informações do Aluno do Curso 1</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome do Aluno</th>
+								<th>Nome do Curso</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cursoAluno : ${cursoAlunos}">
+								<td th:text="${cursoAluno.id}"></td>
+								<td th:text="${cursoAluno.aluno.nome}"></td>
+								<td th:text="${cursoAluno.curso.nomeCurso}">
+									<p th:if="${cursoAluno.curso.id == 1}">
+										(Aluno do Curso 1)
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
 					<form method="POST" th:object="${cursos}" th:action="@{/cursoAndamento/cadastrar}">
 						<div class="card-body">
 							<fieldset>
@@ -36,7 +58,7 @@
 									</div>
 								</div>
 
-								
+
 							</fieldset>
 						</div>
 

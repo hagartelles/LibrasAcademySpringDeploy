@@ -19,7 +19,7 @@
                   <th>E-mail</th>
                   <th>CPF</th>
                   <th>Telefone</th>
-                  <th>Sexo</th>                  
+                  <th>Sexo</th>        
                   <th colspan="2">Ações</th>
                 </tr>
               </thead>
@@ -31,6 +31,7 @@
                   <td th:text="${aluno.cpf}">000.000.000-00</td>
                   <td th:text="${aluno.telefone}">(84) 99999-9999</td>
                   <td th:text="${aluno.sexo}">Masculino, Feminino, Outro</td>
+                  
                   <td>
                     <div class="btn-group">
                       <a type="button" class="btn btn-primary" th:href="@{/alunos/{id} (id=${aluno.id})}">
