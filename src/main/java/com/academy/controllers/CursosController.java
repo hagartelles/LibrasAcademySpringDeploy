@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.academy.entidades.Cursos;
-import com.academy.repository.AlunoRepository;
 import com.academy.repository.CursosRepository;
 import com.academy.repository.ProfessorRepository;
 
@@ -20,8 +19,6 @@ public class CursosController {
 	@Autowired
 	private CursosRepository cursosRepository;
 	
-	@Autowired
-	private AlunoRepository alunoRepository;
 	
 	@Autowired
 	private ProfessorRepository professorRepository;
@@ -47,9 +44,6 @@ public class CursosController {
         ModelAndView modelAndView = new ModelAndView("cursos/formulario");
         modelAndView.addObject("cursos", new Cursos());
         modelAndView.addObject("professores", professorRepository.findAll());
-//        modelAndView.addObject("estudantes", cursosRepository.findAll());
-//        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente"));
-//        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente"));
 
         return modelAndView;
     }
@@ -59,13 +53,6 @@ public class CursosController {
         ModelAndView modelAndView = new ModelAndView("cursos/editCursos");
         modelAndView.addObject("cursos", cursosRepository.getReferenceById(id));
         modelAndView.addObject("professores", professorRepository.findAll());
-
-//        modelAndView.addObject("cursos", new Cursos());
-//        modelAndView.addObject("curso", cursosRepository.findAll());
-//        modelAndView.addObject("professor", professorRepository.findAll());
-// tras tudo de aluno        modelAndView.addObject("alunos", alunoRepository.findAll());
-//        modelAndView.addObject("lideres", funcionarioRepositorio.findByCargoNome("Gerente"));
-//        modelAndView.addObject("funcionarios", funcionarioRepositorio.findByCargoNomeNot("Gerente"));
 
         return modelAndView;
     }
