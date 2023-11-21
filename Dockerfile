@@ -9,8 +9,8 @@ RUN mvn clean install -DskipTests
 
 FROM openjdk:17-jdk-slim
 
-EXPOSE 8080
+EXPOSE 5432
 
-COPY --from=build /target/Libras-Academy-Spring-0.0.1-SNAPSHOT.jar librasscademyspring.jar
+COPY --from=build /target/Libras-Academy-Spring-0.0.1-SNAPSHOT.jar librasacademyspring.jar
 
-ENTRYPOINT [ "java", "-jar", "librasscademyspring.jar" ]
+ENTRYPOINT [ "java", "-jar", "librasacademyspring.jar" ]
