@@ -16,23 +16,20 @@ public class Aluno extends Pessoa {
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
-	@ManyToMany(mappedBy = "estudantes")
-    private Set<Cursos> cursos = new HashSet<>();
-
-	public Set<Cursos> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(Set<Cursos> cursos) {
-		this.cursos = cursos;
-	}
-
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [senha=" + senha + ", getSenha()=" + getSenha() + ", getNome()=" + getNome() + ", getCpf()="
+				+ getCpf() + ", getSexo()=" + getSexo() + ", getTelefone()=" + getTelefone() + ", getEmail()="
+				+ getEmail() + ", getDataNascimento()=" + getDataNascimento() + ", getId()=" + getId() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
 	}
 	
 	

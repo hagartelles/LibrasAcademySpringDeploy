@@ -36,14 +36,6 @@ public class Cursos extends Entidade {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "professor_id_fk")
     private Professor professor;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "curso_aluno",
-        joinColumns = @JoinColumn(name = "curso_id_fk"),
-        inverseJoinColumns = @JoinColumn(name = "aluno_id_fk")
-        )
-	private Set<Aluno> estudantes = new HashSet<>();
 
 	public String getNomeCurso() {
 		return nomeCurso;
@@ -93,13 +85,17 @@ public class Cursos extends Entidade {
 		this.professor = professor;
 	}
 
-	public Set<Aluno> getEstudantes() {
-		return estudantes;
+	@Override
+	public String toString() {
+		return "Cursos [nomeCurso=" + nomeCurso + ", descricao=" + descricao + ", carga_horaria=" + carga_horaria
+				+ ", num_aulas=" + num_aulas + ", anoLancamento=" + anoLancamento + ", professor=" + professor
+				+ ", getNomeCurso()=" + getNomeCurso() + ", getDescricao()=" + getDescricao() + ", getCarga_horaria()="
+				+ getCarga_horaria() + ", getNum_aulas()=" + getNum_aulas() + ", getAnoLancamento()="
+				+ getAnoLancamento() + ", getProfessor()=" + getProfessor() + ", getId()=" + getId() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + "]";
 	}
 
-	public void setEstudantes(Set<Aluno> estudantes) {
-		this.estudantes = estudantes;
-	}
+
 
 	
 	

@@ -2,7 +2,7 @@
 <html th:replace="~{layout :: layout (~{::title}, ~{::main}, _, ~{::scripts})}" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Cadastro de Cursos para Alunos</title>
+	<title>Editar relação de Cursos para Alunos</title>
 </head>
 
 <body>
@@ -11,7 +11,8 @@
 			<div class="col-sm-12">
 				<div class="card">
 					
-					<form method="POST" th:object="${curso}" th:action="@{/cursoAndamento/cadastrar}">
+					<form method="POST" th:object="${curso}">
+						<input type="hidden" th:field="*{matricula}">
 						<div class="card-body">
 							<fieldset>
 								<legend>Dados</legend>
@@ -20,7 +21,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="aluno">Nome do Aluno</label>
-											<select id="aluno" name="alunoId" class="form-select" style="width: 100%;">
+											<select id="aluno" th:field="*{aluno}" name="alunoId" class="form-select" style="width: 100%;">
 												<option th:each="aluno : ${alunos}" th:text="${aluno.nome}"
 													th:value="${aluno.id}">Aluno</option>
 											</select>
@@ -29,7 +30,7 @@
 									<div class="col-md-6 col-sm-12">
 										<div class="form-group">
 											<label for="curso">Nome do Curso</label>
-											<select id="curso"  name="cursoId" class="form-select" style="width: 100%;">
+											<select id="curso" th:field="*{curso}"  name="cursoId" class="form-select" style="width: 100%;">
 												<option th:each="curso : ${cursos}" th:text="${curso.nomeCurso}"
 													th:value="${curso.id}">Curso</option>
 											</select>
