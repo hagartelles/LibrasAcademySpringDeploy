@@ -11,6 +11,6 @@ FROM openjdk:17-jdk-slim
 
 EXPOSE 5432
 
-COPY --from=build /target/Libras-Academy-Spring-0.0.1-SNAPSHOT.jar librasacademyspring.jar
+COPY --from=build /target/Libras-Academy-Spring-0.0.1-SNAPSHOT.jar libras.jar
 
-ENTRYPOINT [ "java", "-jar", "librasacademyspring.jar" ]
+ENTRYPOINT [ "java", "-jar", "libras.jar" ]
